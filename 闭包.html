@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 闭包
+        // 概念：闭包就是打通函数内部与函数外部的一个桥梁，函数外部拿到函数内部的变量
+        // 特点：
+        // 1、函数嵌套函数
+        // 2、有返回值
+        // 3、重点返回值是一个回调函数
+        // 实例1
+        function person() {
+            let name = 'Peter';
+            return function displayName() {
+                console.log(name);
+            };
+        }
+        let perter = person()
+        perter()
+        // 闭包执行机制就是执行上下文 
+        // 闭包优点:可以避免全局变量污染，延长变量生命周期
+        // 闭包缺点:闭包会使得函数中的变量都保存在内存中，内存消耗大，不能滥用闭包
+        // 否则会造成内存泄漏，造成网页的性能问题，解决方法是在退出函数之前，将不使用
+        // 的局部变量全部删除
+    </script>
+</body>
+
+</html>
