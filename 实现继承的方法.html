@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function Super(){
+        //     this.a=1
+        // }
+        // Super.prototype.say=function(){
+        //     console.log('hhh');
+        // }
+        // function Sub(){}
+        // Sub.prototype=new Super()
+        // const test=new Sub()
+        // console.log(test.say());
+
+        // function Super(){
+        //     this.a=[1,2]
+        // }
+        // function Sub(){}
+        // Sub.prototype=new Super()
+        // const test1=new Sub();
+        // test1.a.push(3)
+        // console.log(test1.a);
+        // const test2=new Sub();
+        // console.log(test2.a);
+
+        // 盗用
+        // let Super=function(){
+        //     this.a=1;
+        // }
+        // let Sub=function(){
+        //     console.log(this,'this');
+        //     Super.call(this);
+        //     this.b=2
+        // }
+        // const test=new Sub();
+        // console.log(test,'test');
+
+        // 组合继承
+        // function Super(){
+        //     this.a=[1,2]
+        // }
+        // Super.prototype.say=function(){
+        //     console.log('hhhhh');
+        // }
+        // function Sub(){
+        //     Super.call(this)
+        //     this.b=2
+        // }
+        // Sub.prototype=new Super()
+        // const test1=new Sub()
+        // console.log(test1.say());//hhh
+        // test1.a.push(3)
+        // console.log(test1.a);//[1,2,3]
+        // const test2=new Sub()
+        // console.log(test2.a);
+        // 只要函数名首个字母大写就是构造函数
+        // console.log('---------------------------------------------');
+
+        //1、原型继承
+        /**
+         * function Super(){
+            this.a=1
+        }
+        // 定义构造函数Super
+        Super.prototype.say=function(){
+            console.log('hhh');
+        }
+        // 给Super原型上say赋值
+        function Sub(){}
+        // 定义构造函数Sub
+        Sub.prototype=new Super()
+        // 实例化构造函数Super赋值到Sub的原型上
+        const test =new Sub()
+        // 实例化构造函数Sub赋值到test变量上
+        console.log(test.say());
+        // sub继承super的原型,test继承sub实例,所有sub继承了super实例
+        **/
+        // 优点：通过原型继承多个引用类型的属性和方法
+
+        // 原型继承的缺点
+        /*
+        function Super(){
+            this.a=[1,2];
+            // 属性
+        }
+        // 定义构造函数Super
+        function Sub(){}
+        // 定义构造函数Sub
+        Sub.prototype=new Super()
+        // 实例化构造函数super赋值到Sub原型上
+        const test1=new Sub()
+        // 实例化构造函数Sub赋值到test1变量上
+        test1.a.push(3)
+        // 改变属性a末尾添加了一个3
+        console.log(test1.a);//[1,2,3]
+        const test2=new Sub();
+        // 实例化构造函数Sub赋值到test变量上
+        console.log(test2.a);//[1,2,3] 
+        */
+        // 由此可见原型继承会造成污染一个变了整个链条都会变
+        // 缺点：Sub原型变成了Super的实例，如果Super的实例某个属性是引用值，该引用值就会被应用到所有Sub创建的实例中去，会有污染问题
+
+        // 2、盗用构造函数
+        /*
+        let Super=function(){
+            this.a=1;
+        }
+        // 把一个匿名函数赋值给Super
+        Super.prototype.c=3;
+        // 改变this指向sub和test只能获取到Super的属性,像Super原型上的是获取不到的
+        let Sub=function(){
+            Super.call(this);
+            // call方法改变了this之前Super指向Window现在指向了Sub,同时Sub就拥有了Super的属性,但是获取不到Super的原型
+            this.b=2;
+        }
+        // 把一个匿名函数赋值给Sub
+        Sub.prototype.d=4;
+        // test能获取到Sub的原型
+        const test=new Sub();
+        // 把实例化的sub赋值给test
+        console.log(test);//Sub{a=1,b=2}
+        // 优点：每个实例都会有自己的a属性，哪怕是引用值也不会被污染
+        */
+        // 缺点：Super构造函数中的方法在每个实例上都要创建一遍（除非该方法声明提到全局）；Sub的实例无法访问Super原型上的方法
+
+        // 3、组合继承
+        // 组合继承就是原型继承+盗用构造函数继承
+        /*function Super() { this.a = [1, 2] }
+        // 定义构造函数Super
+        Super.prototype.say = function () { console.log('hhh') }
+        // 给Super构造函数原型上赋值
+        function Sub() {
+            Super.call(this)
+            // 把Super构造函数的this指向从Window改成了Sub,Sub能获取Super的属性(盗用构造函数继承)
+            this.b = 2
+        }
+        // 定义构造函数Sub
+        Sub.prototype = new Super()
+        // 实例化Super赋值给Sub的原型,Sub可以获取Super构造函数的原型方法
+        const test1 = new Sub()
+        // 把实例化Sub赋值给test1
+        console.log(test1.say());//hhh
+        // test1可以获取到Super的原型方法
+        test1.a.push(3)
+        console.log(test1.a);//[1,2,3]
+        const test2 = new Sub()
+        // 把实例化Sub赋值给test2
+        console.log(test2.a);//[1,2]*/
+        // super每次都会被调用两次所以改变test2变量不会影响Super不会造成污染
+        // 组合继承优缺点
+        // 优点：集合了【原型继承】和【盗用构造函数继承】的优点
+        // 缺点：存在效率问题，Super始终会被调用两次
+
+        // 4、原型式继承
+        // es5之前的写法
+        /*const obj={a:1};
+        // 定义一个obj对象
+        function createObj(o){
+            function Fn(){}
+            // 定义构造函数Fn
+            Fn.prototype=o
+            // 接收obj对象赋值到Fn构造函数的实例中
+            return new Fn()
+            // 把实例化构造函数Fn()返回出去
+        }
+        // 定义一个函数createObj
+        const test =createObj(obj)
+        // 相当于把Fn实例化赋值给test
+        console.log(test);*/
+
+        // es5之后
+        /*const obj = { a: 1 }
+        const test = Object.create(obj)
+        // Object.create(obj)相当于把 （function createObj(o) {
+        //                             function Fn() { }
+        //                             // 定义构造函数Fn
+        //                             Fn.prototype = o
+        //                             // 接收obj对象赋值到Fn构造函数的实例中
+        //                             return new Fn()
+        //                             // 把实例化构造函数Fn()返回出去
+        //                             }
+        //                             // 定义一个函数createObj）给封装了
+        console.log(test)*/
+        // 优点：对一个对象进行浅克隆创建另一个对象，同时继承该对象的原型属性
+        // 缺点：无法判断实例的构造函数是父类还是子类
+
+        // 5、寄生式继承
+        // function createObj(o) {
+        //     let clone = ObjectCopy(o)
+        //     clone.say = function () {
+        //         console.log('hhh');
+        //     }
+        //     return clone
+        // }
+        // // 定义一个createObj函数
+        // const obj = { a: 1 };
+        // // 定义一个obj对象
+        // const test = createObj(obj)
+        //优点：根据一个对象克隆创建另一个对象，并增强对象
+        //缺点：同【盗用构造函数继承】方法在每个实例上都要创建一遍
+        // 注意：objectCopy不是原生接口，是自定义方法，对入参对象进行复制
+
+        // 6、寄生式组合继承
+        /*function Super(){
+            this.a=[1,2]
+        }
+        // 创建构造函数Super
+        Super.prototype.say=function(){
+            console.log('hhh');
+        }
+        // 给构造函数Super的实例上的say赋值
+        function Sub(){
+            Super.call(this);
+            // 把Super构造函数的this指向从Window改成了Sub,Sub能获取Super的属性(盗用构造函数继承)
+            this.b=2;
+        }
+        // 创建构造函数Sub
+        Sub.prototype=Object.create(Super.prototype)
+        // Object.create()里面放什么就可以把值赋值给左边变量的原型上
+        // 利用原型式继承的Object.create方法把Super.prototype赋值给Sub.prototype,就可以用super的say方法
+        Sub.prototype.constructor=Sub;
+        const test=new Sub();
+        console.log(test);*/
+        // 优点：什么都能获取到
+        // 缺点：存在效率问题，Super始终会被调用两次
+        
+// prototype有一个constructor的属性，默认是指向prototype所在的构造函数。
+// constructor会被实例继承。他的作用就是表名某个实例对象是由哪个构造函数产生的。如下，p是没有constructor 的，他的constructor 就指向P
+    </script>
+</body>
+
+</html>
