@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 浅拷贝的方法
+        // 1、Object.assign 对象合并
+        // Object.assign 是 Object 的一个方法，该方法可以用于 JS 对象的合并等多个用途，其中一个用途就是可以进行浅拷贝。
+        // 该方法的第一个参数是拷贝的目标对象，后面的参数是拷贝的来源对象（也可以是多个来源）
+        // const obj = {};
+        // const source = {
+        //     name: 'nordon',
+        //     info: {
+        //         age: 18
+        //     }
+        // }
+        // Object.assign(obj, source)
+        // console.log(obj);
+        // source.info.age = 20;
+        // console.log(obj);
+        // console.log(source);
+        // 扩展运算符
+        // 使用扩展运算符也可以完成浅拷贝
+        // const source = {
+        //     name: 'nordon',
+        //     info: {
+        //         age: 18
+        //     }
+        // };
+        // const obj = { ...source };
+        // source.info.age = 20;
+        // console.log(obj);
+        // console.log(source);
+
+        // concat 数组合并
+        // 数组的 concat 方法其实也是浅拷贝，使用场景比较少，使用concat连接一个含有引用类型的数组时，
+        // 需要注意修改原数组中的元素的属性，因为它会影响拷贝之后连接的数组
+        // const arr = [1, 2, { name: 'nordon' }];
+        // const newArr = arr.concat();
+        // newArr[2].name = 'wy';
+        // console.log(arr);
+        // console.log(newArr);
+
+        // Array.prototype.slice
+        // 数组的 slice 方法其实也是浅拷贝，使用场景比较少，同cancat
+        // const arr = [1, 2, { name: 'nordon' }];
+        // const newArr = arr.slice();
+        // newArr[2].name = 'wy';
+        // console.log(newArr);
+
+        // 深拷贝
+        // JSON方法实现深拷贝
+        var obj = {
+            name: 'a',
+            arr: [1, 2, 3]
+        }
+        // var newObj = JSON.parse(JSON.stringify(obj))
+        // newObj.name = "cc"
+        // console.log(obj) //{ name: 'a', arr: [ 1, 2, 3 ] }
+        // console.log(newObj) //{ name: 'cc', arr: [ 1, 2, 3 ] }
+        // 对于一般常用的数据拷贝这种方法无疑是非常简单的，但是遇到复杂的数据，比如date，正则，函数
+        // ，值为undefinde的对象时键值对直接被删除，就会出现问题可以根据业务返回数据类型，来酌情使用
+
+        // 递归
+        // function deepcopy(obj) {
+        //     let res = {};
+        //     //保存复制之后的数据
+        //     for (const key in obj) {
+        //         if (obj[key] instanceof Object) {
+        //             res[key] = deepcopy(obj[key]);
+        //             //自身调用自身 如果是复杂数据类型就重新进行递归调用
+        //         } else {
+        //             res[key] = obj[key];
+        //             //如果是基本数据类型就进行复制
+        //         }
+        //     }
+        //     return res;
+        // }
+
+        
+        function deepcopy(obj){
+            let res={};
+            // 用来接收数据
+            for(const key in obj){
+                if(obj[key] instanceof Object){
+                    // 判断obj[key]这个是不是复杂数据类型
+                    res[key]=deepcopy(obj[key])
+                    // 如果是复杂数据类型就重新进行递归调用
+                }
+                else{
+                    res[key]=obj[key]
+                    // 如果是就直接复制
+                }
+            }
+            return res
+        }
+    </script>
+</body>
+
+</html>

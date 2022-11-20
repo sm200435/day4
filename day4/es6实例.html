@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 400px;
+            margin: auto;
+        }
+        .item{
+            width: 100px;
+            height: 30px;
+            border: 1px solid black;
+            float: left;
+            margin-right: 10px;
+        }
+        /* #boxs{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>点击变色</h1>
+        <hr>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <!-- <div id="boxs">
+
+        </div> -->
+    </div>
+    <script>
+        let boxItem=document.getElementsByClassName('item')
+        console.log(boxItem);
+        for (let i = 0; i < boxItem.length; i++) {
+            console.log(boxItem[i]);
+            boxItem[i].onclick = function() {
+                this.style.backgroundColor='pink'
+            }
+        }
+        // let boxw=document.getElementById('boxs')
+        // console.log(boxw);
+        // boxw.onclick = function() {
+        //     console.log(this);
+        //     setTimeout(() => {
+        //         this.style.backgroundColor='pink'
+        //     },2000);
+        // }
+    </script>
+</body>
+</html>

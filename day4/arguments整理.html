@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // arguments
+    // 函数传递一些参数，js把传入到这个函数的全部参数存储在一个叫做arguments的东西里面
+    function showargs() {
+        console.log(arguments);
+    }
+    showargs(1, 2, 3, 4, 5);
+    // // let arr=new showargs
+    // // console.log(arr);
+    // console.dir(a);
+    // arguments对象将我传入的五个参数以数组的形式保存在里面，还有保存了我传入函数的实参的个数（length）。
+    // 而且我们可以看到arguments对象的 __ proto __ 是指向object的，这也说明了他是个类数组对象，而不是一个数组。
+    // function showcallee() {
+    //     var a = '这里是代码';
+    //     var b = '这是另一段代码';
+    //     var c = a + b;
+
+    //     console.log(arguments.callee);
+
+    //     return c;
+    // }
+    // showcallee();
+    // 最后我们还可以看到arguments还有一个叫做callee的属性，这个属性是表示的是当前函数的一个引用，
+    // 简单点说，这个属性里面存储的我们调用的这个函数的完整代码
+</script>
+
+</html>

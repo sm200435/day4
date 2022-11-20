@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise出现的原因
+        // 1、为了解决异步回调问题
+        // 2、为了解决信任问题(第三方回调函数是不是只调用一次，性能，和执行多次)
+        // 3、为了解决回调执行顺序问题()
+        // 4、为了解决捕捉错误能力(400 500)
+        // 2、Promise
+        // 概念:Promise是一个容器,里面存放着异步事件
+        // 语法:Promise是一个对象，可以获取异步操作的信息
+        // 3、特点
+        // 1、有三种状态:pedding(等待中)，fulfilled(已成功),rejected(已失败)
+        // 2、状态的变化：
+        // 2、1从等待中到已成功 (pedding->fulfilled)
+        // 2、2从等待中到已失效(pedding->rejected)
+        // 3、一旦状态确定，便不在更改，状态凝固--->resolved，无论什么时候监听我 我就是这个样子
+        // 4、和事件循环的区别
+        // 事件循环一旦错过，不会再被监听到
+        // promise状态凝固，永远都可以被监听到
+        // 5、Promise的回调参数
+        // 1、resolve->成功的回调
+        // 2、reject->失败的回调
+
+        // 实例化Promise对象
+        // const p = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         let data = "我真的服气"
+        //         resolve(data)
+        //         let data2 = "巴少爷，给你请安了"
+        //         reject(data2)
+        //     });
+        // })
+        // p.then(res => {
+        //     console.log(res, '成功回调');
+        // }).catch(err => {
+        //     console.log(err, '失败回调');
+        // })
+        // p.then((res)=>{
+        //     console.log(res);
+        // },(err)=>{
+        //     console.log(err);
+        // }
+        // )
+
+        
+        // 引入fs模块
+        // const fs = require('fs');
+        // // 调用 fs.readFile() 方法读取文件
+        // //     参数1：读取文件的存放路径
+        // //     参数2：读取文件时候采用的编码格式，一般默认指定 utf8
+        // //     参数3：回调函数,拿到读取失败和成功的结果 err(失败) dataStr(成功)
+        // const p = new Promise((resolve, reject) => {
+        //     fs.readFile('./文字.md', (err, data) => {
+        //         if (err) {
+        //             reject(err)
+        //         }
+        //         else {
+        //             resolve(data)
+        //         }
+        //     })
+        // })
+        // p.then((res) => {
+        //     console.log(res.toString());
+        // }, (err) => {
+        //     console.log(err);
+        // })
+        // p.then(function(value){
+        //     console.log(value.toString());
+        // }),function(reason){
+        //     console.log('读取失败');
+        // } 
+        // console.log(toString.call(new Date));     // [object Date]
+        // console.log(toString.call(new String));   // [object String]
+        // console.log(toString.call(Math));         // [object Math]
+        // console.log(toString.call('xxxx'));    // [object String]
+        // console.log(toString.call(123));          // [object Number]
+        // console.log(toString.call([]));           // [object Array]
+        // console.log(toString.call({}));           // [object Object]
+        // console.log(toString.call(undefined));    // [object Undefined]
+        // console.log(toString.call(null)); 
+        // var a=1
+        // console.log(a.toString());
+        // console.dir(Object);
+
+
+        // 用Promise封装原生ajax请求
+        const p = new Promise((resolve, reject) => {
+            // 实例化Promise构造函数
+            var xhr = new XMLHttpRequest()
+            console.dir(xhr);
+            // 创建原生ajax对象
+            xhr.open("GET", "https://api.apiopen.top");
+            // 确定请求方式和路径open("请求方式","请求资源的地址");
+            xhr.send()
+            // 发送请求
+            xhr.onreadystatechange = function () {
+                // onreadystatechange 事件 当请求被发送到服务器时，我们需要执行一些基于响应的任务。 
+                // 每当 readyState 改变时，就会触发 onreadystatechange 事件。
+                // AJAX请求发送后，readyState状态就会改变，readyState状态一改变就执行onreadystatechange函数。其中readyState状态为4的话，就是请求发送完成
+                if (xhr.readyState == 4) {//readyState是请求状态
+                    if(xhr.status==200||xhr.status==304){//status可以查看到请求资源的状态，200与304就代表成功获取资源，例如404这些就是请求失败
+                        resolve(xhr.response)//请求消息(request)和响应消息(response) 
+                    }
+                    else{
+                        reject(xhr.response)
+                    }
+                }
+            }
+        })
+
+        p.then(res=>{
+            console.log(res);
+        },err=>{
+            console.log(err);
+        })
+        //readyState的请求状态
+        // 0	AJAX开始初始化
+        // 1	开始发送AJAX请求
+        // 2	AJAX请求发送完成
+        // 3	开始解析响应的资源
+        // 4	AJAX请求的步骤全部完成
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise
+        // Promise 是异步编程的一种解决方案，其实是一x个构造函数，
+        // 自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。
+        // const p=new Promise(function(resolve,reject){
+        //     setTimeout(function(){
+        //         let data="我要休息"
+        //         resolve(data)
+        //         let data2="我不能休息"
+        //         reject(data2)
+        //     })
+        // })
+        // p.then(res=>{
+        //     console.log(res,'成功回调');
+        // }).catch(err=>{
+        //     console.log(err,'失败回调');
+        // })
+
+        const fs=require('fs');
+
+        // const p =new Promise(function(resolve,reject){
+        //     fs.readFile('./为学', (err, data) => {
+        //         if(err)reject(err)
+        //         resolve(data)
+        //     })
+        // })
+        // p.then(function(value){
+        //     console.log(value.toString());
+        // },function(reason){
+        //     console.log("读取失败");
+        // })
+
+        // 实例化Promise函数
+        const p=new Promise((resolve,reject)=>{
+            // 创建初始化链接
+            var xhr=new XMLHttpRequest()
+            // 确定接口方法和接口
+            xhr.open("GET","https://api")
+            // 发送
+        })
+    </script>
+</body>
+</html>
