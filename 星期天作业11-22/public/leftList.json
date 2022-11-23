@@ -1,0 +1,82 @@
+[
+    {
+        "title": "数据管理",
+        "icon": "el-icon-document",
+        "childen": [
+            {
+                "title": "用户列表",
+                "path": "users"
+            },
+            {
+                "title": "商家列表",
+                "path": "cities"
+            },
+            {
+                "title": "食品列表",
+                "path": "foods"
+            },
+            {
+                "title": "订单管理",
+                "path": "orders"
+            },
+            {
+                "title": "管理员列表",
+                "path": "all"
+            }
+        ]
+    },
+    {
+        "title": "添加数据",
+        "icon": "el-icon-circle-plus",
+        "childen": [
+            {
+                "title": "添加商铺",
+                "path": "all6"
+            },
+            {
+                "title": "添加商品",
+                "path": "all5"
+            }
+        ]
+    },
+    {
+        "title": "图表",
+        "icon": "el-icon-star-off",
+        "childen": [
+            {
+                "title": "用户分布",
+                "path": "all4"
+            }
+        ]
+    },
+    {
+        "title": "编辑",
+        "icon": "el-icon-edit",
+        "childen": [
+            {
+                "title": "文本编辑",
+                "path": "all3"
+            }
+        ]
+    },
+    {
+        "title": "设置",
+        "icon": "el-icon-s-tools",
+        "childen": [
+            {
+                "title": "管理员设置",
+                "path": "all"
+            }
+        ]
+    },
+    {
+        "title": "说明",
+        "icon": "el-icon-warning",
+        "childen": [
+            {
+                "title": "说明",
+                "path": "alll"
+            }
+        ]
+    }
+]
