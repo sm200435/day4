@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // let obj1=new Proxy({},{
+    //     get:function(target,key,receiver){
+    //         console.log(`获取当前${key}!`);
+    //         return Reflect.get(target,key,receiver)
+    //     },
+    //     set:function(target,key,value,receiver){
+    //         console.log(target);//需要代理的对象
+    //         console.log(key);//设置的一个属性名
+    //         console.log(value);//设置的属性值
+    //         console.log(receiver);//代理后的目标对象
+    //         console.log(`设置当前${key}`);
+    //         return Reflect.set(target,key,value,receiver)
+    //     }
+    // })
+    // obj1.count=1
+    // ++obj1.count
+    // console.log(obj1);
+
+    // Proxy对象可以让你为另一个对象创建一个代理，它可以拦截和重新定义该对象的基本操作。
+    // Proxy
+    // 一个 Proxy 对象由两个部分组成： target 、 handler 。在通过 Proxy 构造函数生成实例对象时
+    // ，需要提供这两个参数。 target 即目标对象， handler 是一个对象，声明了代理 target 的指定行为。
+    // proxy
+    // Proxy常用拦截方法
+    // 1.get 获取值时拦截
+    // get拦截接受两个参数，target就是代理的对象，第二个参数时访问的属性
+    // target：代理的对象 prop：操作的属性
+   
+    let arr = new Proxy({con:1}, {
+        get:function(target,key,receiver){
+            // console.log(target);目标对象||需要代理的对象
+            // console.log(key);设置的属性名
+            // console.log(receiver);代理后的目标对象
+            console.log(`改变当前${key}`);
+            return Reflect.get(target,key,receiver)
+        },
+        // 只有目标对象里的属性值发生改变才触发get
+        set:function(target,key,value,receiver){
+            // console.log(target);//目标对象||需要代理的对象
+            // console.log(key);//设置的属性名
+            // console.log(value);//设置的属性值
+            // console.log(receiver);//代理后的目标对象
+            console.log(`设置当前${key}`);
+            return Reflect.set(target,key,value,receiver)
+        }
+        // target目标对象内容变了就触发set
+    })
+    arr.count=18
+    arr.count++
+    console.log(arr);
+</script>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 类（class）通过 static 关键字定义静态方法。
+    // 不能在类的实例上调用静态方法，而应该通过类本身调用。这些通常是实用程序方法，例如创建或克隆对象的功能。
+    class Fn{
+        static method(n=1){
+            console.log(n*3);
+            console.log('我是静态方法,只能通过类本身去调用实例不能调用,实例不能继承这个方法但是子类能继承');
+        }
+    }
+    Fn.method(6)
+    let p=new Fn()
+    // p.method() //报错
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 数值的拓展
+    // * 1。Number.EPSILON 表示最小精度
+    // 数组的方法 Math.abs: 取绝对值 |a-b||1-2|= 1
+    // 2、十进制 1,2,3 0.2
+    // 3、Number.isFinite 检测一个数值是否为有限数 小数和长度是有限的，无线数表示是位数是无止尽的 例如: 圆周率3.1415926..
+    // 4.Infinity 无穷大
+    // 5。Number.isNaN 判断一个数值是不是NAN
+    // 6。Number.isInteger 判断一个数是不是整数
+    // 7.Number.parsetInt Number.parseFloat
+    // 8.Math.trunc 将数字的小数部分抹掉
+    // 9.Math.sign 判断一个数到底为正数 负数 还是零 返回值是true和false
+    // 而是当为正数的时候 返回1，负数的时候返回-1 0的时候返回0
+    // Number.EPSILON 是 JavaScript 表示的最小精度/EPSILON 属性的值接近于 22204460492503130808472633361816E-16
+    function equal(a, b) {
+        if (Math.abs(a - b) < Number.EPSILON) {
+            // 数组的方法 Math.abs: 取绝对值 |a-b||1-2|= 1
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    console.log(Number.EPSILON);
+    // Number.EPSILON 是 JavaScript 表示的最小精度/EPSILON 属性的值接近于 22204460492503130808472633361816E-16
+    console.log(equal(-1, -1));
+
+    let b = 0b1010;
+    // 二进制
+    let o = 0o777;
+    // 八进制
+    let d = 100;
+    // 十进制
+    let x = 0xff;
+
+    console.log(Number.isFinite(100));//true
+    console.log(Number.isFinite(100 / 0));//false
+    console.log(Number.isFinite(Infinity));//false
+    // Infinity 无穷大
+    //Number.isFinite 检测一个数值是否为有限数 小数和长度是有限的，无线数表示是位数是无止尽的 例如: 圆周率3.1415926..
+    console.log(Number.isNaN(123));//false
+    console.log(Number.isNaN(NaN));//true
+    // Number.isNaN 判断一个数值是不是NAN
+    console.log(Number.isInteger(200))//true
+    console.log(Number.isInteger(200.1))//false
+    // Number.isInteger 判断一个数是不是整数
+
+    console.log(Number.parseInt('10.111'));//10
+    // Number.parsetInt取整数
+    console.log(Number.parseFloat('10.11aaa'));//10.11
+    // Number.parseFloat取小数点后面数字
+    // Number.parsetInt Number.parseFloat
+
+    console.log(Math.trunc(110.213123));//110
+    // Math.trunc 将数字的小数部分抹掉
+
+    console.log(Math.sign(1));//1
+    console.log(Math.sign(0));//0
+    console.log(Math.sign(-1));//-1
+    // Math.sign 判断一个数到底为正数 负数 还是零 返回值是true和false
+</script>
+
+</html>

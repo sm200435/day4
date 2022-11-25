@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Phone(brand, price) {
+        this.brand = brand
+        this.price = price
+    }
+    // 原本的构造函数是window对象的方法，如果不用new操作符而直接调用，那么构造函数的执行对象就 是window，
+    // 即this指向了window。现在用new操作符后，this就指向了新生成的对象。理解这一步至关重要。
+    // 执行构造函数中的代码
+    Phone.prototype.call = function () {
+        console.log('我可以打电话');
+    }
+    function SmartPhone(brand, price, color, size) {
+        Phone.call(this, brand, price)
+        // 这里的this就是把Son这个构造函数里面的this指向替换到Father构造函数里面的this指向中，
+        // brand,price相当于给Phone构造函数里的brand，price赋值
+        this.color = color;
+        this.size = size;
+    }
+    SmartPhone.prototype = new Phone;
+    SmartPhone.prototype.constructor = SmartPhone;
+
+    SmartPhone.prototype.photo = function () {
+        console.log('我可以拍照');
+    }
+    SmartPhone.prototype.playGame = function () {
+        console.log('我可以玩游戏');
+    }
+
+    let p = new SmartPhone('苹果13', '9799', '石墨色', '6.7')
+    let p1 = new Phone(1, 2)
+    console.log(p1);
+    console.log(p);
+    console.log(p.call);
+</script>
+
+</html>

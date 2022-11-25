@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 区别1：模块加载的时间
+    // require：运行时加载
+    // import：编译时加载（效率更高）【由于是编译时加载，所以import命令会提升到整个模块的头部】
+    // test();
+    // import { test } from '/test';
+    // 上面的代码不会报错，正常执行
+    // 区别2:
+    // require输出的，是一个值的拷贝，而import输出的是值的引用；
+
+    // require使用
+    // a.js
+    function test(args) {
+        // body...
+        console.log(args);
+    }
+    module.exports = {
+        test
+    };
+    // 相当于把test赋值给module这个对象的exports属性
+    // b.js
+    let { test } = require('./a.js');
+
+    test('this is a test.');
+    // require的核心概念：在导出的文件中定义module.exports，导出的对象类型不予限定（可为任意类型）
+    // 在导入的文件中使用require()引入即可使用。本质上，是将要导出的对象，赋值给module这个对象的exports属性，在其他文件中通过require这个方法来访问exports这个属性。
+    // 上面b.js中，require(./a.js) = exports 这个对象，然后使用es6取值方式从exports对象中取出test的值。
+
+    //import 写法
+    //import是es6为js模块化提出的新的语法，import （导入）要与export（导出）结合使用。用法：
+    // a.js:
+    // export function test(args) {
+    //     // body...
+    //     console.log(args);
+    // }
+
+    // // 默认导出模块，一个文件中只能定义一个
+    // // export default function () {... };
+
+    // export const name = "lyn";
+    // // b.js:
+
+    // // _代表引入的export default的内容
+    // import { test, name } from './a.js';
+    // test(`my name is ${name}`)
+
+</script>
+
+</html>

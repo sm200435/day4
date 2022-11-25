@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // extends
+    class Father{
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        running(){
+            console.log('我会唱歌');
+        }
+    }
+    class Son extends Father{
+        constructor(name,age,sex){
+            super(name,age)
+            this.sex=sex
+        }
+        run(){
+            super.running()
+            console.log('我上小学了');
+        }
+    }
+    let p=new Son('小红','12','男')
+    console.log(p)
+    // p.running()
+    p.run()
+    // super
+    // 1、子类创造属性
+    // 2、实例方法
+    // 3、静态方法
+</script>
+</html>

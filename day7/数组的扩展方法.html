@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ## 数组方法
+
+### isArray() ，判断是不是一个数组
+
+let arr = [1,2];
+console.log(arr.isArray()); //true
+
+### push()，向数组***末尾添加***一个或者多个元素，
+
+### ***返回新数组到长度**。**会改变原数组***
+
+let arr = [1,2];
+let returnValue = arr.push(3,4,5);
+console.log(arr); // [1,2,3,4,5]
+console.log(returnValue) // 5
+
+### pop()，删除并返回数组的最后一个元素***，若该数组为空，***
+
+### ***则返回undefined。***原数组改变。***
+
+```
+let arr = [1,2,3];
+let del = arr.pop();
+console.log(arr); // [1,2]
+console.log(del); // 3
+```
+
+### unshift()*向数组的开头添加一个或多个元素，并返回新的数组长度。原数组改变***
+
+```
+let arr = [1,2,3];
+let returnValue = arr.unshift(4,5);
+console.log(arr); // [4,5,1,2,3]
+console.log(returnValue) // 5
+```
+
+### shift()**删除并返回数组的第一个元素，若该数组为空，则返回undefined。原数组改变。*
+
+```
+let arr = [1,2,3];
+let del = arr.shift();
+console.log(del);//1
+```
+
+### concat()**合并两个或多个数组，生成一个新的数组。原数组不变***
+
+```
+let arr = [1,2];
+let b = [3,4];
+let result = arr.concat(b);
+console.log(result) // [1,2,3,4];
+```
+
+### reverse()**将数组倒序。原数组改变**
+
+```
+let arr = [1,2,3,4];
+arr.reverse();
+console.log(a); // [4,3,2,1]
+```
+
+### sort()对数组元素进行排序，根据字符串UniCode码排序，原数组改变
+
+
+
+```
+let arr = [1,2,4,3];
+// 升序
+arr.sort((a,b)=>{
+    return a - b;
+});
+// 降序
+arr.sort((a,b)=>{
+    return b - a;
+})
+```
+
+**原理**
+
+1. **当返回值为负数时，那么前面的数在前面，也就是不动**
+2. **当返回值为正数时，那么后面的数在前**
+3. **为0，不动**
+
+### join()
+
+***将数组的每一项用指定字符连接形成一个字符串。默认连接字符为 “,” 逗号。***
+
+```
+let arr = [1,2,3,4];
+let str = arr.join();
+let str1 = arr.join('-');
+console.log(str); // 1,2,3,4
+console.log(str1); // 1-2-3-4
+```
+
+### toString()
+
+***此方法将数组转化为字符串***
+
+```
+let arr = [1, 2, 3, 4, 5];
+let str = arr.toString()
+console.log(str)// 1,2,3,4,5
+```
+
+### slice()**slice(start,end).从start开始，end之前结束，不到end。不改变原数组**
+
+```
+let a = ['项目一','项目二','项目三']
+let arr = arr.slice(0,2);
+console.log(a); // ["项目一","项目二","项目三"]
+console.log(arr); // ["项目一","项目二"]
+```
+
+### splice()***splice(start, number, item, item) 从start开始删除number位，***
+
+### ***然后将后面参数插入数组。返回删除元素组成对数组，会改变原数组***
+
+```
+let arr = [1,2,3];
+let result = arr.slice(1,0,33);
+console.log(arr); // [1,2,33,3]
+console.log(result); // []
+ 
+```
+
+### indexOf()，**来查找某个元素的位置，如果不存在就返回-1，但是不能判断是否有NaN的元素**
+
+```
+let arr = ['项目一','项目二','项目三'];
+let result = arr.indexOf('项目二');
+console.log(arr); // 1
+```
+
+### includes()**判断是否包含某一元素,直接返回true或者false表示是否包含元素，对NaN一样有效。**
+
+```
+let arr = ['项目一','项目二','项目三'];
+let result = arr.includes('项目一');
+console.log(result) // true
+```
+
+## 循环方法
+
+### map
+
+- 创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+- 不改变原数组
+- ***返回值是一个新的数组***
+
+```
+let testArr = ['子项0','子项1','子项2'];
+let resultArr = testArr.map((item, index) => {
+  return `处理·${item}`
+});
+console.log(resultArr);
+// 结果： ["处理·子项0", "处理·子项1", "处理·子项2"]
+```
+
+### forEach
+
+- 对数组的每个元素执行一次提供的函数。
+- ***总是返回undefined。***
+- 不改变原数组
+
+```
+let testArr = ['子项0','子项1','子项2'];
+testArr.forEach((item, index)=>{
+  return `forEach处理${item}`
+});
+```
+
+### filter
+
+- 对数组的每一项都进行***过滤***，返回符合条件的item组成的数组
+- ***不会改变原数组***
+
+```
+let filterArr = ['子项0','子项1','子项2'];
+let filterResult = filterArr.filter((item, index) => {
+  return item === '子项0';
+});
+console.log(filterArr); // ["子项0", "子项1", "子项2"]
+console.log(filterResult);  ["子项0"]
+```
+
+### find
+
+- 遍历数组，找到第一个符合条件的项，并返回该项。否则返回undefined
+- 不会改变数组
+
+```
+let findArr = ['子项0','子项1','子项2']
+let findResult = findArr.find((item, index) => {
+  return item === '子项0';
+});
+console.log(findResult);
+// 结果为: 子项0
+```
+
+### findIndex
+
+- ***遍历数组找到第一个符合条件的项，并返回该项的索引值。否则返回-1。***
+- ***不会改变数组对象。***
+
+```
+let findIndexArr = ['子项0','子项1','子项2'];
+let findIndexResult = findIndexArr.findIndex((item, index)=>{
+  return item === '子项0';
+});
+console.log(findIndexResult);
+// 结果为： 0
+```
+
+### every
+
+- 对数组中的每一项运行给定函数，如果该函数对每一项返回true,则返回true。***简单说就是看数组的每个元素是否符合要求，都符合则返回true，否则返回false***
+
+```
+let everyArr = [2,3,4];
+let everyResult = everyArr.every((item, index)=>{
+  return item > 0
+});
+console.log(everyResult);
+// 结果为: true
+```
+
+### some
+
+是对数组中每一项运行指定函数，如果该函数对***任一项返回true，则返回true。***
+
+```
+let someArr = [2,3,4];
+let someResult = someArr.some((item, index)=>{
+  return item > 3
+});
+console.log(someResult);
+// 结果为: true
+```
+
+### reduce
+
+- 接收一个函数作为累加器（accumulator），数组中的每个值***（从左到右）***开始缩减，最终为一个值。
+- 第二个参数作为第一次调用的a的值
+
+```
+// reducer
+let reduceArr = [0,1,2,3,4]
+let reduceResult = reduceArr.reduce((a, b)=>{
+  return a + b;
+});
+console.log(reduceResult);
+// 结果: 10
+```
+
+### reduceRight
+
+- 和reduce一样是累加器，不过是***从右往左计算***
+- 第二个参数作为第一次调用的a的值 -->
+
+
+</body>
+</html>

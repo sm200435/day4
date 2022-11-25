@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 实现类的继承 extends
+    // 在ES6 中新增了 extends关键字，用于实现类的继承。
+    // class Parent{
+    //     constructor(name,age){
+    //         this.name=name
+    //         this.age=age
+    //     }
+    //     running(){
+    //        return this.name+'在跑步'
+    //     }
+    // }
+    // class Son extends Parent{
+    // // class创建一个Son extends继承Parent
+
+    // }
+    // const p=new Son('小红','18')
+    // // 实例化Son，Son继承了Parent的所有属性和方法
+    // // console.log(p.running());
+
+    // // class继承案例
+    // class Tel{
+    // // 创建一个Tel对象
+    //     constructor(name,Price){
+    //     // 用来定义属性的
+    //         this.name=name
+    //         this.Price=Price
+    //     }
+    //     running(){
+    //     // 用来定义方法
+    //         return '我用的是'+this.name+'花了'+this.Price
+    //     }
+    // }
+
+    // class Phone extends Tel{
+    //     // class创建一个Phone对象extends继承的是Tel
+    // }
+
+    // let apple=new Phone('苹果16','18888')
+    // console.log(apple);
+    // console.log(apple.running());
+    // Super关键字
+    // super的使用位置有三个：
+    // 1、子类的构造函数
+    // 2、实例方法
+    // 3、静态方法
+
+
+    // 2.1：Super关键字使用方法一：
+    // 在子类（派生类）的构造函数中使用this或者返回默认对象之前，必须先通过super调用父类的构造函数,否则会报错。
+
+    // 比如：Son类中constructor属性中没有去掉super方法就会报错。
+
+    // 如下展示正确的使用方法一：
+
+    // 父类名字Parent
+    // class Parent {
+    //     constructor(name, age) {
+    //         this.name = name
+    //         this.age = age
+    //     }
+
+    //     running() {
+    //         console.log(this.name + ' 在跑步~')
+    //     }
+
+    // }
+    // class Son extends Parent {
+    //     constructor(name, age, height) {
+    //         super()
+    //         this.name = name
+    //         this.age = age
+    //         this.height = height
+    //     }
+    // }
+    // const P1 = new Son('Jee', 20, '1.80')
+    // console.log(P1) // Son { name: 'Jee', age: 20, height: '1.80' }
+    // 上面示例代码中子类中有两句重复的逻辑语句，在父类中我们已经声明过了，
+    // 在子类中再写一次就冗余了，让我们接下来看看有没有什么好的解决办法。
+
+    // 2.2：Super关键字使用方法二：
+    // class Son extends Parent {
+    //     constructor(name, age, height) {
+    //         super(name, age)
+    //         // this.name = name
+    //         // this.age = age
+    //         this.height = height
+    //     }
+    // }
+    // 这就是上面的代码冗余的问题解决办法：可以将name和age写到super参数中就可以直接继承父类的逻辑，减少冗余代码。
+
+    // class Parent {
+    //     constructor(name, age) {
+    //         this.name = name
+    //         this.age = age
+    //     }
+
+    //     parentMethod() {
+    //         console.log('处理逻辑一')
+    //         console.log('处理逻辑二')
+    //         console.log('处理逻辑三')
+    //     }
+    // }
+
+    // class Son extends Parent {
+    //     constructor(name, age, height) {
+    //         super(name, age)
+    //         this.height = height
+    //     }
+    //     sonMethod() {
+    //         // 调用父类的方法供子类使用
+    //         super.parentMethod()
+    //         console.log('处理逻辑四')
+    //         console.log('处理逻辑五')
+    //         console.log('处理逻辑六')
+    //     }
+
+    // }
+    // const P1 = new Son('Jee', 20, '1.80')
+    // console.log(P1) // Son { name: 'Jee', age: 20, height: '1.80' }
+
+    // P1.sonMethod()
+// 处理逻辑一
+//处理逻辑二
+//处理逻辑三
+//处理逻辑四
+//处理逻辑五
+//处理逻辑六
+
+    // extends
+    class Father{
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        running(){
+            console.log('我是'+this.name+'今年'+this.age+'了');
+        }
+    }
+    class Son extends Father{
+        constructor(name,age,sex){
+            super(name,age)
+            this.sex=sex
+        }
+        run(){
+           super.running()
+           console.log('我是俺们那');
+        }
+    }
+    let p = new Son('小红','18','男')
+    console.log(p);
+    p.running()
+    p.run()
+    // super
+    // 1、子类的构造函数
+    // 2、实例方法
+    // 3、静态方法
+
+</script>
+
+</html>

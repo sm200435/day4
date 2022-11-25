@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 传统es5写法
+    // function Point(x,y){
+    //     this.x=x;
+    //     this.y=y;
+    // }
+    // Point.prototype.toString=function(){
+    //     return '('+this.x+','+this.y+')'
+    // }
+    // var p=new Point(1,2)
+    // let result=p.toString()
+
+    // console.log(result);
+    // console.log(p.toString());
+    // es6的class方法
+    // class Point{
+    //     constructor(x,y){
+    //         this.x=x
+    //         this.y=y
+    //     }
+    //     toString(){
+    //         return '('+this.x+','+this.y+')'
+    //     }
+    // }
+    // let p=new Point(1,2)
+    // let result=p.toString()
+    // console.log(p);
+
+    // es5的写法，构造函数
+    // function Phone(brand, price) {
+    //     this.brand = brand,   
+    //     this.price = price
+    // }
+    // Phone.prototype.call = function () {
+    //     return '我可以打电话'
+    // }
+    // Phone.prototype.info = function () {
+    //     return '(我手机的型号是:' + this.brand + ',我手机的价格是' + this.price + '我的手机铃声是淘汰';
+    // }
+    // let p = new Phone('三星w2022', '12999')
+    // console.log(p);
+    // console.log(p.call);
+    // console.log(p.info);
+
+    // es6 class类的写法
+    // class Phone {
+    //     constructor(brand,price) {
+    //         this.brand = brand,
+    //         this.price = price
+    //     }
+    //     call(){
+    //         console.log('我是log的');
+    //         return '我是return的'
+    //     }
+    //     info(){
+    //         return '我手机的型号是:' + this.brand + ',我手机的价格是' + this.price + '我的手机铃声是巴少';
+    //     }
+    // }
+    // let p2=new Phone('巴钦的8848钛金手机','11111w')
+    // console.log(p2);
+    // console.log(p2.call());
+    // console.log(p2.info());
+
+    // es5写法
+    // function Ren(name,age){
+    //     this.name=name
+    //     this.age=age
+    // }
+    // Ren.prototype.specialty=function(){
+    //     return '唱歌'
+    // }
+    // Ren.prototype.combined=function(){
+    //     return '我叫'+this.name+'我今年'+this.age
+    // }
+    // let p=new Ren('小红','18')
+    // console.log(p);
+    // console.log(p.specialty());
+    // console.log(p.combined());
+
+    // es6写法
+    class Ren{
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        specialty(){
+            return '唱歌'
+        }
+        combined(){
+            return '我叫'+this.name+'我今年'+this.age
+        }
+    }
+    let p=new Ren('巴钦','19')
+    console.log(p);
+    console.log(p.specialty());
+    console.log(p.combined());
+</script>
+
+</html>

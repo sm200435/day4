@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 在 Es6 中，在 Class 内部可以使用 get 和 set 关键字， 对某个属性设置存值函数和取值函数， 拦截该属性的存取行为。
+
+    class HelloWorld {
+        constructor() {
+            this.name_ = ''
+        }
+        get name() {
+            // 进入页面就会触发get修饰符可以在里面做操作
+            // this.name_='被get修改'
+            return '读取'
+        }
+        set name(value) {
+            // hw.name = 'jasper'赋值之后才会触发，value就是赋的值，set修饰符可以在里面做操作
+            // console.log('set names: ' + value);
+            this.name_ = value;
+            console.log('被修改');
+        }
+    }
+    let hw = new HelloWorld();
+
+    //'set name:'
+    hw.name = 'jasper';
+
+    // 'get name'
+    console.log(hw);
+    console.log(hw.name)
+</script>
+
+</html>
