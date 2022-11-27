@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- vue2目录 -->
+    vue.config.js---配置webpack文件(包括配置跨域，请求接口，第三方插件配置，rule配置)
+    README.md---项目说明文档
+    Package.json---
+        scripts:配置启动命令，打包命令，eslint效验代码命令
+        browserslist:浏览器适配配置
+        devDependencies,dependencies:项目node-modules大版本的限制
+        ^:最大兼容版本
+        ~:大约在这个版本上下就行
+    package-lock.json
+        约束每个node-modules版本下的其他依赖的固定版本
+    jsconfig.json
+        目录中存在tsconfig.json文件表明该目录是 TypeScript 项目的根目录。该tsconfig.json文件指定编译项目所需的根文件和编译器选项。
+        JavaScript 项目可以使用jsconfig.json文件来代替，它的作用几乎相同，但默认启用了一些与 JavaScript 相关的编译器标志。
+    babel.config.js:babel插件设置
+    .gitignre:忽略文件
+    Public:公共入口文件和公共配置配置
+    node_modules npm加载的项目依赖模块
+    src 放置组件和axios配置
+        Assets--放置图片.img.css.js
+        components--配置其他组件所需要的公共组件
+        router--配置路由表(动态路由，静态路由，权限路由)
+        store--存放vuex的仓库
+        Views--放置页面的地方
+        App.vue 入口的总文件
+        main.js 实例化vue挂载
+    Utils--所有封装axios,封装token，封装公共方法----工具类文件
+</body>
+</html>
