@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    1、 什么是数据代理
+    通过一个对象代理对另一个对象中的属性的操作（读/写），就是数据代理。
+    
+    2、简单实现数据代理
+    JS有一个内置对象Object数据代理的方法为：Object.defineProperty(obj, prop, descriptor)，通过这个方法即可实现数据代理。
+    参数解析：
+    obj----------------------------------->要定义属性的对象
+    prop--------------------------------->要定义或修改的属性的名称或 Symbol
+    descriptor-------------------------->要定义或修改的属性描述符
+    3、vue 数据代理： 通过vm对象来代理data中所有属性的操作，更方便操作data中的数据
+</body>
+<script>
+    
+    // let hope = "我想去看雪"
+    // let obj = {
+    //     name: '小媛',
+    //     age: '18',
+    // }
+    // Object.defineProperty(obj,'hope',{
+    //     get(){
+    //         console.log('获取了hope');
+    //         return hope
+    //     },
+    //     set(value){
+    //         console.log('修改了hope');
+    //         hope=value
+    //     }
+    // })
+    let obj1={x:100}
+    let obj2={y:200}
+    Object.defineProperty(obj2,'x',{
+        // enumerable: true, // 控制属性是否可以枚举，默认为false(枚举就是是否可以循环遍历)
+        // writable: true, // 控制属性是否可以被修改，默认为false
+        // configurable: true, // 控制属性是否可以被删除，默认为false
+        get(){
+            console.log('设置了X');
+            return obj1.x
+               // 读取data中对应属性值返回(实现代理读操作)
+        },
+         // 当读取obj2的x属性时，get函数（getter）就会被调用，且返回值就是x的值
+        set(value){
+            obj1.x=value
+            console.log('改变了x');
+            // 将最新的值保存到data中对应的属性上(实现代理写操作)
+        }
+         // 当修改obj2的x属性时，set函数（setter）就会被调用，且会收到一个具体修改的值value
+    })
+    // 这里便是通过操作（读/写）对象obj2来实现对对象obj1的读取、存储。
+</script>
+
+</html>

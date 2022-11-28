@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- MVVM模型
+    1，M: 模型(Model) : data中的数据
+    2、V:视图(View) :模板代码
+    3，VM: 视图模型(ViewModel): Vue实例
+    观察发现:
+    1.data中所有的属性，最后都出现在了vm身上
+    2.vm身上所有的属性 及 Vue原型上所有属性，在Vue模板中都可以直接使用 -->
+
+    <!-- 什么是MVVM？
+    MVVM是Model-View-ViewModel的简写，是M - V - VM 三部分组成。
+
+    本质：是MVC改进版
+
+    MVVM就是将其中View的状态和行为抽象化，其中ViewModel将试图（即View）和业务逻辑分开，它可以去除Model的数据的同时帮忙处理View中由于需要展示内容而涉及的业务逻辑。
+
+    MVVM采用：双向数据绑定。
+
+    View中数据变化将自动反映到Model上，反之，Model中数据变化也将会自动展示在页面上。
+
+    ViewModel就是View和Model的桥梁。
+
+    ViewModel负责把Model的数据同步到View显示出来，还负责把View的修改同步回到Model。
+
+    MVVM的核心思想：是关注Model的变化。让MVVM框架利用自己的机制自动更新DOM（即所说的View视图），也就是所谓的数据-视图分离。 -->
+
+    <!-- 2.MVVM模型
+    M：模型Model --->也就是data中的数据
+    V：视图View --->也就是模板代码
+    VM：视图模型ViewModel --->也就是Vue实例（vm） -->
+
+    如果你还不理解就去看<a href="https://blog.csdn.net/weixin_54614831/article/details/126410389?spm=1001.2014.3001.5506">通俗易懂的介绍MVVM</a>
+</body>
+
+</html>
