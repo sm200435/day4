@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        * {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+        }
+    </style>
+</head>
+    <!-- v-for指令:
+    1.用于展示列表数据
+    2.语法 v-for="(item，index] in xxx" :key="yyy"
+    3,可遍历:数组，对象 字符串 (用的很少)、指定次数 (用的很少) -->
+
+<body>
+    <div>
+
+        <div id="root">
+            <li v-for="item in list">
+                <p>{{item.name}}</p>
+                <p>{{item.age}}</p>
+            </li>
+        </div>
+    </div>
+
+</body>
+<script>
+    new Vue({
+        data() {
+            return {
+                list: [
+                    {
+                        name: '小红',
+                        age: 18,
+                    },
+                    {
+                        name: '小bai',
+                        age: 18,
+                    },
+                    {
+                        name: '小asd',
+                        age: 18,
+                    }
+                ]
+            }
+        }
+    }).$mount('#root')
+</script>
+
+</html>

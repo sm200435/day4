@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+ 
+    <!-- computed 计算属性-->
+        <!-- 1、定义：要用的属性不存在，要通过已有的属性计算得来。
+        2、原理：底层借助了Object.defindeproperty方法提供的getter和setter
+        3、get函数什么时候执行？
+            （1）、初次读取时会执行一次
+            （2）、当依赖的数据发生改变时会被再次调用
+        4、set函数什么时候执行?
+            当前数据发生变化时候调用
+        5、computed同步，里面不能写异步操作
+        6、计算属性是基于响应式进行缓存的，如果所依赖的属性未发生改变，
+        那么会返回之前的值，不会再次执行函数。只有依赖的属性发生改变，才会再次执行函数
+        7、数据和属性来源于data数据中，具有多对一的关系
+        8、备注：
+            1、计算属性最终会出现在vm（vue实例）上，直接读取使用即可。
+            2、如果计算属性要被修改,那必须写set函数去响应修改，且set中要引入计算时依赖的数据发生改变 -->
+    <div id="root">
+        姓<input type="text" v-model="famous"><br>
+        名<input type="text" v-model:value="surname"><br>
+        姓名<input type="text" v-model="name"><br>
+        {{name}}
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data(){
+            return{
+                surname:'库尔曼',
+                famous:'罗尼',
+            }
+        },
+        // computed:{
+        //     name:{
+        //         get(){
+        //             console.log('读取了数据');
+        //             return this.famous+'·'+this.surname
+        //         },
+        //         set(value){
+        //             let result=value.split('·')
+        //             console.log(result);
+        //             this.famous=result[0]
+        //             this.surname=result[1]
+        //             console.log('修改了数据');
+        //         }
+        //     }
+        // }
+        // 计算属性完整写法既可以读取name又能够修改name
+        computed:{
+            name(){
+                return this.famous+'·'+this.surname
+            }
+        }
+        // 计算属性默认只有getter,不过也可以提供一个setter,默认setter不会被执行，只有计算属性被重新赋值才会触发computed的set方法
+        // 计算属性的简写方式当不需要修改name时候就可以简写
+    })
+</script>
+
+</html>

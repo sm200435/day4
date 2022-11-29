@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style和class的绑定方式</title>
+    <!-- 绑定样式:
+        1.class样式
+            写法:class="xxx” xxx可以是字符串、对象、数组。
+            字符串写法适用于: 类名不确定，要动态获取。
+            对象写法适用于:要绑定多个样式，个数不确定，名字也不确定。
+            数组写法适用于:要绑定多个样式，个数确定，名字也确定，但不确定用不用。可以适用于三元表达式
+        2，style样式
+            :style="{font-Size: xxx}“其中xxx是动态值
+            :style=”[a,b]“其中a、b是样式对象。 -->
+    <style>
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div :class="mood" style="color: black;margin: 20px;">上述的方法三个的高富帅</div>
+        <div :class="classAll" :style="fonts">对方是个东风三到四法国德国是否v</div>
+        <div :class="['yellow','blue']" :style="[fonts,font]">而非结果还不是的计划开办诺夫卡是觉得你创新方面呢</div>
+        <div :class="{'green':true}"></div>
+        <div :class="[{'blue':true},'red']"></div>
+        <div :class="[flag==true?'red':'yellow']"></div>
+    </div>
+</body>
+<script>
+    new Vue({
+        data() {
+            return {
+                flag: false,
+                mood: 'red',
+                classAll: ['red', 'yellow'],
+                fonts: {
+                    padding: '20px'
+                },
+                font: {
+                    color: '#ccc'
+                }
+            }
+        }
+    }).$mount('#root')
+</script>
+
+</html>
