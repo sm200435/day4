@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>人员列表</h1>
+        <div><input type="text"><button @click="ordered(1)">年龄升序</button> <button @click="ordered(2)">年龄降序</button> <button @click="ordered(3)">原顺序</button></div>
+        <ul>
+            <li v-for="item in list" :key="item.id">{{item.name}}-{{item.age}}-{{item.sex}} <input type="text"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data(){
+            return{
+                list:[
+                    {id:1,name:'周冬雨',age:12,sex:'女'},
+                    {id:2,name:'马冬梅',age:17,sex:'女'},
+                    {id:3,name:'周杰伦',age:18,sex:'女'},
+                    {id:4,name:'杨过',age:19,sex:'女'},
+                ]
+            
+            }
+        },
+        methods:{
+            ordered(val){
+                if(val==1){
+                    console.log(this);
+                    this.list.sort((a,b)=>{
+                        return a.age-b.age
+                    })
+                }
+                else if(val==2){
+                    this.list.sort((a,b)=>{
+                        return b.age-a.age
+                    })
+                }
+                else{
+                   this.list.sort((a,b)=>{
+                    return a.id-b.id
+                   })
+                }
+            }
+        }
+    })
+</script>
+
+</html>

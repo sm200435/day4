@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>收集表单数据</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- v-model有三个常用的修饰符：
+    number：输入字符串转化为有效的数字，常用语文本输入。
+    lazy：失去焦点后才数据数据，常用语文本输入。
+    在输入框中，v-model默认是同步数据，使用lazy会转变为在change事件中同步，也就是在失去焦点或者按下回车键时才更新
+    trim：对输入进行两边空格去掉，常用语文本输入。 -->
+    <div id="root">
+        <!-- 设置表单提交事件回调，并且阻止了表单提交的默认行为 -->
+        <form @submit.prevent="printForm">
+            <!-- 普通的文本输入框，如果使用ajax进行请求的发送，name属性不要也罢，这个没什么要注意的，主要是使用v-model来进行数据的双向绑定 -->
+            <label>账号：</label><input type="text" name="account" v-model="account"> <br><br>
+            <label>密码：</label><input type="password" name="password" v-model="password"><br><br>
+
+            <!-- 单选框：
+            1. 如果需要在多个数据中进行选择，需要为每个input单选框设置value属性值。
+            2. 同一类型的单选框要设置一样的name属性。
+
+            3. 如果只是一个单选框，用于勾选是否，比如是否同意某个协议等，值只有false和true，无需name，value，并且双向绑定数据为布尔值，
+               true为选中，false为不选中。 -->
+            <label>性别：</label>
+            男<input type="radio" name="gender" v-model="gender" value="man">
+            女<input type="radio" name="gender" v-model="gender" value="woman"><br><br>
+
+
+            <!-- 多选框：
+            1. 如果需要在多个数据中进行选择，需要为每个input单选框设置value属性值。
+            2. 同一类型的单选框要设置一样的name属性。
+            3. 与该表单元素进行双向绑定的数据类型要为数组。
+
+            4. 如果只是一个多选框，用于勾选是否，比如是否同意某个协议等，值只有false和true，无需name，value，并且双向绑定数据为布尔值，
+               true为选中，false为不选中。  -->
+            <label>爱好：</label>
+            学习<input type="checkbox" name="hobby" v-model="hobby" value="学习">
+            游泳<input type="checkbox" name="hobby" v-model="hobby" value="游泳">
+            听音乐<input type="checkbox" name="hobby" v-model="hobby" value="听音乐"><br><br>
+
+            <!-- 下拉框：
+            1. v-model双向绑定要在select标签完成。
+            2. 每个option子标签要设置value -->
+            <label>所在地区：</label>
+            <select name="address" v-model="address">
+                <option value="">请选择地区</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="深圳">深圳</option>
+                <option value="广州">广州</option>
+            </select>
+            <br><br>
+            <!-- 多行输入：与单行输入类似 -->
+            <label>其他信息：</label>
+            <textarea v-model="otherInfo"></textarea><br><br>
+
+            <!-- 多选框的另外一种使用方式，仅仅用于判断是否勾选。 -->
+            <label>是否同意协议：</label>
+            <input type="checkbox" v-model="isAgree">阅读并接受<a href="https://www.baidu.com"
+                target="_blank">用户协议</a><br><br>
+            <button>控制台输出收集的表单数据</button>
+
+        </form>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                account: "",
+                password: "",
+                gender: "",
+                hobby: [],
+                address: "",
+                otherInfo: "",
+                isAgree: false
+            },
+            methods: {
+                printForm() {
+                    console.log(JSON.stringify(this._data));
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .inputClass {
+            width: 300px;
+            height: 30px;
+            border: 0;
+            border-bottom: 3px dashed orange;
+            outline: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需求：
+        1、input框
+            1、实现的功能
+                1.1、输入的时候实现搜索
+                1.2、value值的绑定 事件的绑定
+        2、标题
+        3、实现列表的展示
+            1、准备一个数据
+            2、绘制页面展示效果
+        4、模糊匹配，搜索一个关键字，进行查找出全部包含当前关键字的列表信息
+        5、防抖：
+        6、边界情况：输入空串，空格，特殊的情况时候列表应该怎么展示 -->
+    <div id="root">
+        <h1>人员列表</h1>
+        <input v-model="search" :class="'inputClass'">
+        <ul>
+            <li v-for="item in fullPersons" :key="item.id">{{item.name}}-{{item.age}}-{{item.sex}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#root',
+        data() {
+            return {
+                search: '',
+                persons: [
+                    { id: '001', name: '马冬梅', age: 19, sex: '女' },
+                    { id: '002', name: '罗尼', age: 49, sex: '男' },
+                    { id: '003', name: '阿诺', age: 29, sex: '男' },
+                    { id: '004', name: '李亚强', age: 39, sex: '男' }
+                ],
+                fullPersons: []
+            }
+        },
+        watch: {
+            search: {
+                immediate: true,
+                handler(newValue, oldValue) {
+                    let flag=true
+                    let time
+                    if (flag ==true) {
+                        clearTimeout(time)
+                    }
+                    time = setTimeout(() => {
+                        this.fullPersons = this.persons.filter(i => {
+                            return i.name.indexOf(newValue) != -1
+                        })
+                    }, 1000);
+                }
+            }
+        }
+    })
+</script>
+
+</html>
