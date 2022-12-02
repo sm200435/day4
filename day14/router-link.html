@@ -1,0 +1,27 @@
+router-link是用来路由跳转的，原理其实就是<a href=""></a>
+<router-link to="/"></router-link>to里面写路由的path来实现页面的跳转
+<router-link :to="{name:'b'}"></router-link>to里面可以写字符串的形式也可以写对象的形式，都可以实现跳转
+<router-link to="/b" tag="div"></router-link>tag属性就是把这个标签变成了普通的div，当然也可以写span，li都是可以的
+<router-link to="/c" target="_blank"></router-link>target="_blank"定义这个之后点击这个标签跳转就会新开一个页面
+<router-link to="/c" replace></router-link>a标签页面会自动的保存跳转的历史的记录，router-link原理就是a,replace默认是false,加上这个之后浏览器就不会保存这个跳转的记录
+
+this.$router这个是vue-router(路由)的整体实例，里面又各种方法
+this.$route这个是当前路由的参数，数据等等
+
+this.$router里有push()方法也可以用来实现路由跳转
+this.$router.push('/')括号里可以写字符串，也可以是对象this.$router.push({path:"/a"}),this.$router.push({name:"/a"})
+this.$router.push({path:'/a',replace:true})
+
+<!-- this.$router.push({path:'/',query:{value:2}}) --> 
+在push方法里可以用query给跳转的页面传参,用query传输的数据会在浏览器上地址栏显示，刷新不会掉数据，用this.$route.query查看传来的参数
+<!-- this.$router.push({name:'/',params:{value:2}}) --> 
+params只能通过name去传参
+在push方法里除了可以用query给跳转的页面传参,也可以用params传参,用params传参数据不会显示在地址栏上，刷新页面数据丢失,用this.$route.params查看传来的数据
+解决params传参刷新数据丢失
+比如a组件给b组件用params传参,要在接收参数页面的路由上拼接上要传过去的参数名
+<!-- a组件 this.$router.push({name:'/b',params:{value:2}}) -->
+<!-- b组件路由配置上 path:'/b/:value' -->
+这样就能实现b页面刷新数据还在，浏览器地址上也会有传过来的值
+
+
+

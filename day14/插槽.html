@@ -1,0 +1,25 @@
+插槽
+插槽分为匿名插槽、具名插槽、作用域插槽。
+子组件中匿名插槽只能有一个；可以有多个具名插槽；
+作用域插槽中可以有匿名插槽和具名插槽。
+
+匿名插槽
+没有名字
+
+具名插槽
+插槽有名字，可以放对应的位置上
+子<slot name="son"></slot>用name在插槽上起名字
+父slot="son",v-slot:son,这两种都可以在父组件使用具名插槽
+要注意 v-slot:son这种方式只能在<template v-slot:son></template>只能这样使用
+v-slot:son可以简写为#son
+
+作用域插槽
+就是父组件可以获取子组件上的数据使用，正常情况下我们只能通过$emit来获取子组件的数据
+子<slot :sonlist="sonlist"></slot>就跟父传子一样自定义属性
+父<div slot-scope="sonlist">{{sonlist}}这里就可以使用sonlist数据</div>
+还有一种具名插槽作用域父组件接收数据的方法
+子<slot name="son" :sonlist="sonlist"></slot>就跟父传子一样自定义属性
+父<template v-slot:son="sonlist">{{sonlist}}这里就可以使用sonlist数据</template>
+v-slot:son="sonlist"这样只能在template中这样用
+
+
