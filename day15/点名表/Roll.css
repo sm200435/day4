@@ -1,0 +1,93 @@
+body{
+    background-image: url(./img/xxxx.gif);
+    font-family: cursive;
+    font-size: 20px;
+}
+.box{
+    position: relative;
+    width: 1500px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+   margin: auto;
+   padding: 100px;
+}
+h1{
+    text-align: center;
+    color: white;
+    line-height: 200px;
+}
+.timeOut{
+    text-align: right;
+    color: white;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+.left{
+    width: 900px;
+
+}
+.right{
+    margin-left: 100px;
+    width: 50%;
+}
+.part{
+    display: flex;
+    flex-wrap: wrap;   
+}
+.part li{
+    width: 80px;
+    list-style: none;
+    text-align: center;
+    margin: 26px;
+    /* -webkit-text-fill-color: transparent; */
+    color: white;
+    /* -webkit-background-clip: text; */
+    /* background-clip: text;
+     
+    /* 意思是，以盒子内的文字作为裁剪区域向外裁剪，文字之外的区域都将被裁剪掉。  */
+}
+.content_div{
+    width: 600px;
+    height: 300px;
+    line-height: 300px;
+    text-align: left;
+    font-size: 30px !important;
+    color: #fff;
+    margin-bottom: 200px;
+}
+.content_div span{
+    color: aliceblue;
+    font-size: 40px;
+}
+.footer{
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -100px;
+}
+button{
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+    border-radius: 20px;
+    margin-right: 20px;
+}

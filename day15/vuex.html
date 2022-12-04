@@ -1,0 +1,72 @@
+1. vuex是什么？
+Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+
+2.vuex 五个核心及使用
+state存储数据组件中通过this.$store.state.
+mutations里面是方法 可以直接操作state中的数据组件中通过this.$store.commit
+注意：commit只能传一个参数 如果需要传递多个数据用复杂数据类型 比如数组 对象 同步数据
+getters：类似于计算属性 是对state中的数据做逻辑处理 组件中通过this.$store.getters
+actions：发起异步请求 也是可以操作数据,但是不能直接操作数据 它调用mutations中的方法来操作数据
+actions中的方法是异步的 mutations中的方法是同步的
+在组件中通过dispatch调用actions中的方法,在actions中调用mutations中的方法,在mutations中可以直接操作state中的数据
+在组件中通过 this.$store.dispatch
+modules： 模块拆分 把数据分模块管理
+使用vuex的好处
+能够在Vuex中集中管理共享数据，易于开发和后期维护
+能够高效地实现组件之间的数据共享，提高开发效率
+在Vuex中的数据都是响应式的
+
+3.vuex的运行原理
+在组件中通过dispatch调用actions中的方法,在actions方法中commit调用mutations中的方法,在mutations中的方法中可以直接操作state中的数据,只要state中的数据发生改变就会立即响应到组件的试图上(异步)
+在组件中通过commit调用mutations中的方法,在mutations中的方法中可以直接操作state中的数据,只要state中的数据发生改变就会立即响应到组件的视图上(同步)
+
+4.modules模块化
+当在vuex中存储的数据很多的时候,需要用modules来分模块管理
+每个模块里又有四个核心
+state mutations getters actions
+然后引入仓库
+并且在modules下注册模块
+在定义的modules里开启一个命名
+namespaced:true
+1. 新建modules文件夹
+2. 在文件夹中新建每个模块的js文件
+3. getters单独新建一个文件，和index.js同级,新建一个getters.js
+
+5.vuex的辅助函数
+vuex的辅助函数其实就是一个语法糖
+mapState
+mapMutations
+mapActions
+mapGetters
+都是先引入 然后展开使用
+mapState和mapGetters在计算属性下展开
+mapActions和mapMutations在methods下展示
+展开的时候用扩展运算符...展开
+例如：...mapState(['userName'])
+
+6.vuex的运用场景
+vuex是通过全局注入store对象 来实现组件间的状态共享
+总之 加入你需要数据和组件分离,分别处理，那么使用Vuex是非常合适的
+相反 如果不需要分离数据,那么不使用Vuex也没关系
+比如某个数据只跟某组件打交道,是强耦合的,那么这个数据就应该存放在该组件的data属性中
+如果只是简单的父子组件间传递数据，使用vuex未免有点大材小用，其实只用使用组件间常用的通信方法即可
+在大型复杂的项目中(多级组件嵌套) ,需要实现一个组件更改某个数据，多个组件自动获取更改后的数据进行业务逻辑处理,这时候使用vuex比较合适
+涉及到非父子关系的组件，例如兄弟关系、祖孙关系，甚至更远的关系;
+他们之间如果有数据交互，需要数据和组件的分离，那么应该使用Vuex来实现
+如果页面复杂度比较低的话，也可以考虑使用 global-event-bus 来实现;
+如果只是父子关系的组件数据交互，那么应该考虑使用props进行单向传递;
+如果涉及到子组件向父组件的数据传递，那么应该考虑使用 emmit和on;
+
+7.怎么开启严格模式
+strict(死最可特): true, 跟 state 同级的地方设置这个属性
+开启完严格模式后 如果不是通过 mutation 修改的 state 就会报错
+strict 严格模式只适合开启在开发环境下
+
+8.vuex的弊端
+vuex也有一些弊端,比如浏览器刷新的时候,vuex的数据会丢失,我们一般结合本地存储来解决,当我们在mutations里面改变state的时候,通过localStorage或者sessionStorage存储到本地,然后在state的状态的属性值那块写一个三元表达式,如果本地存在数据的话则读取本地存储的数据,否则就赋值为null
+实现如下：
+
+9.vuex持久化插件
+持久化原理：做到数据状态持久化，使页面刷新后数据不会初始化为默认状态。
+安装插件 npm i vuex-persistedstate
+结着引用 注册
