@@ -1,0 +1,45 @@
+1.跨域
+因为浏览器的同源策略的原因,一旦协议,域名端口任何一个不同就会产生跨域问题
+解决跨域的方法有
+1. CORS
+<!-- Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Methods: POST，GET，OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER，Content-Type
+Access-Control-Max-Age: 86400 -->
+2.Widnow.domain
+3. location.href
+4.proxy(本地)
+5.jsonp
+6.Script src解决跨域,img src
+5.nginx(线上代理的方式解决跨域)
+
+2、https 和http的区别
+HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全，
+为了保证这些隐私数据能加密传输，于是网景公司设计了SSL（Secure Sockets Layer）协议用于
+对HTTP协议传输的数据进行加密，从而就诞生了HTTPS。
+
+3。scss Less stules都有自己的Loader
+
+4。开发环境
+dev环境:普通开发环境(开发人员自己开发的环境)
+test: 测试环境(开发完成以后并联调完以后使用的环境)
+stage: 备机测试(灰度环境)---最接近于生产环境，方便测试隐藏bug
+production:线上环境,真机，--- 用户使用的环境
+
+5.多环境配置
+是在根目录下 .env开发进行不同的环境的配置
+
+6. 客户端侧和服务端侧
+客户端: 我们前端开发的这一侧
+服务端: 提供数据的后台
+
+7.npm run serve 我们自己本地起了一个服务，什么时候不发生跨域呢
+那就是服务端的交流不会跨域，一旦经过浏览器 就会发生跨域这个问题
+
+8、生产环境和测试环境打出来的包有什么区别
+1、js和css的压缩问题
+2、包大小的问题
+
+问题: 在router.js中间用process打印不出结果,打印process.env是可以打印出结果的
+用process打印不出结果是因为拿不到因为只能在node环境才能拿到
+用process.env打印出来是因为相当于通过走的路径去拿可以拿到
