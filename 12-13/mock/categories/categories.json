@@ -1,0 +1,177 @@
+{
+  "data": {
+    "total": 8,
+    "pagenum": 0,
+    "pagesize": 5,
+    "result": [
+      {
+        "cat_id": 1835,
+        "cat_name": "234",
+        "cat_pid": 0,
+        "cat_level": 0,
+        "cat_deleted": false,
+        "children": [
+          {
+            "cat_id": 1836,
+            "cat_name": "只因为你太美",
+            "cat_pid": 1835,
+            "cat_level": 1,
+            "cat_deleted": false,
+            "children": [
+              {
+                "cat_id": 2032,
+                "cat_name": "231",
+                "cat_pid": 1836,
+                "cat_level": 2,
+                "cat_deleted": false
+              },
+              {
+                "cat_id": 2040,
+                "cat_name": "1",
+                "cat_pid": 1836,
+                "cat_level": 2,
+                "cat_deleted": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cat_id": 1847,
+        "cat_name": "萨达撒",
+        "cat_pid": 0,
+        "cat_level": 0,
+        "cat_deleted": false,
+        "children": [
+          {
+            "cat_id": 1848,
+            "cat_name": "234567890",
+            "cat_pid": 1847,
+            "cat_level": 1,
+            "cat_deleted": false,
+            "children": [
+              {
+                "cat_id": 1850,
+                "cat_name": "34567890",
+                "cat_pid": 1848,
+                "cat_level": 2,
+                "cat_deleted": false
+              },
+              {
+                "cat_id": 2048,
+                "cat_name": "12",
+                "cat_pid": 1848,
+                "cat_level": 2,
+                "cat_deleted": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cat_id": 1861,
+        "cat_name": "删了没妈",
+        "cat_pid": 0,
+        "cat_level": 0,
+        "cat_deleted": false,
+        "children": [
+          {
+            "cat_id": 1862,
+            "cat_name": "删了没妈",
+            "cat_pid": 1861,
+            "cat_level": 1,
+            "cat_deleted": false,
+            "children": [
+              {
+                "cat_id": 1863,
+                "cat_name": "删了没妈",
+                "cat_pid": 1862,
+                "cat_level": 2,
+                "cat_deleted": false
+              },
+              {
+                "cat_id": 2050,
+                "cat_name": "你好",
+                "cat_pid": 1862,
+                "cat_level": 2,
+                "cat_deleted": false
+              }
+            ]
+          },
+          {
+            "cat_id": 2041,
+            "cat_name": "666",
+            "cat_pid": 1861,
+            "cat_level": 1,
+            "cat_deleted": false
+          }
+        ]
+      },
+      {
+        "cat_id": 1988,
+        "cat_name": "少爷",
+        "cat_pid": 0,
+        "cat_level": 0,
+        "cat_deleted": false,
+        "children": [
+          {
+            "cat_id": 1989,
+            "cat_name": "少爷儿子",
+            "cat_pid": 1988,
+            "cat_level": 1,
+            "cat_deleted": false,
+            "children": [
+              {
+                "cat_id": 1990,
+                "cat_name": "少爷孙子",
+                "cat_pid": 1989,
+                "cat_level": 2,
+                "cat_deleted": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cat_id": 2034,
+        "cat_name": "测试",
+        "cat_pid": 0,
+        "cat_level": 0,
+        "cat_deleted": false,
+        "children": [
+          {
+            "cat_id": 2036,
+            "cat_name": "test1",
+            "cat_pid": 2034,
+            "cat_level": 1,
+            "cat_deleted": false,
+            "children": [
+              {
+                "cat_id": 2037,
+                "cat_name": "test2",
+                "cat_pid": 2036,
+                "cat_level": 2,
+                "cat_deleted": false
+              },
+              {
+                "cat_id": 2038,
+                "cat_name": "test3",
+                "cat_pid": 2036,
+                "cat_level": 2,
+                "cat_deleted": false
+              },
+              {
+                "cat_id": 2039,
+                "cat_name": "test3",
+                "cat_pid": 2036,
+                "cat_level": 2,
+                "cat_deleted": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "meta": { "msg": "获取成功", "status": 200 }
+}

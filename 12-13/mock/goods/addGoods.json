@@ -1,0 +1,49 @@
+{
+  "data": {
+    "goods_id": 1432,
+    "cat_id": "2114",
+    "goods_name": "1123",
+    "goods_price": 213,
+    "goods_number": 123,
+    "goods_weight": 213,
+    "goods_introduce": "<p>qwe</p>",
+    "goods_big_logo": "",
+    "goods_small_logo": "",
+    "goods_state": null,
+    "is_del": "0",
+    "add_time": 1670934093,
+    "upd_time": 1670934093,
+    "delete_time": null,
+    "hot_mumber": 0,
+    "is_promote": false,
+    "cat_one_id": "2077",
+    "cat_two_id": "2078",
+    "cat_three_id": "2114",
+    "goods_cat": "2077,2078,2114",
+    "pics": [
+      {
+        "pics_id": 4646,
+        "goods_id": 1432,
+        "pics_big": "/uploads/goodspics/big_a37e1023fc0928cd3533f903d683d479.jpg",
+        "pics_mid": "/uploads/goodspics/mid_a37e1023fc0928cd3533f903d683d479.jpg",
+        "pics_sma": "/uploads/goodspics/sma_a37e1023fc0928cd3533f903d683d479.jpg",
+        "pics_big_url": "https://www.liulongbin.top:8888/uploads/goodspics/big_a37e1023fc0928cd3533f903d683d479.jpg",
+        "pics_mid_url": "https://www.liulongbin.top:8888/uploads/goodspics/mid_a37e1023fc0928cd3533f903d683d479.jpg",
+        "pics_sma_url": "https://www.liulongbin.top:8888/uploads/goodspics/sma_a37e1023fc0928cd3533f903d683d479.jpg"
+      }
+    ],
+    "attrs": [
+      {
+        "goods_id": 1432,
+        "attr_id": 4164,
+        "attr_value": "银色 白色",
+        "add_price": null,
+        "attr_name": "颜色",
+        "attr_sel": "many",
+        "attr_write": "list",
+        "attr_vals": "银色 白色"
+      }
+    ]
+  },
+  "meta": { "msg": "创建商品成功", "status": 201 }
+}
