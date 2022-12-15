@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="order">
+    <div class="goods">
       <div class="header">
         <myInput v-model="value" @search="search"></myInput>
+        <el-button type="primary" @click="add">添加用户</el-button>
       </div>
       <el-table
         ref="singleTable"
@@ -12,34 +13,30 @@
         border
       >
         <el-table-column type="index" label="#" width="50"></el-table-column>
-        <el-table-column property="order_number" label="订单编号">
+        <el-table-column property="goods_name" label="商品名称" width="615px">
         </el-table-column>
-        <el-table-column property="order_price" label="订单价格">
+        <el-table-column property="goods_price" label="商品价格">
         </el-table-column>
-        <el-table-column property="mobile" label="是否付款">
+        <el-table-column property="goods_number" label="商品重量">
+        </el-table-column>
+        <el-table-column label="创建时间">
           <template slot-scope="scope">
-            <el-button type="primary" v-if="scope.row.order_pay == 1"
-              >已付款</el-button
-            >
-            <el-button type="danger" v-else>未付款</el-button>
-          </template>
-        </el-table-column>
-        <el-table-column property="is_send" label="是否发货"> </el-table-column>
-        <el-table-column label="下单时间">
-          <template slot-scope="scope">
-            {{ new Date(scope.row.update_time).toLocaleString() }}
+            {{ scope.row.add_time | times }}
           </template>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="primary" @click="handleEdit(scope.row)"
+            <el-button
+              size="mini"
+              type="primary"
+              @click="handleEdit(scope.$index, scope.row)"
               ><i class="el-icon-edit"></i
             ></el-button>
             <el-button
               size="mini"
-              type="success"
-              @click="handleDelete(scope.row)"
-              ><i class="el-icon-s-check"></i
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              ><i class="el-icon-delete"></i
             ></el-button>
           </template>
         </el-table-column>
@@ -54,20 +51,13 @@
         :total="total"
       >
       </el-pagination>
-      <KuaiDi v-if="visivle" ref="keaidi"></KuaiDi>
-      <ProvincesOrders
-        v-if="visivleProv"
-        ref="provincesorders"
-      ></ProvincesOrders>
     </div>
   </div>
 </template>
 
 <script>
 import myInput from "@/components/Backgroundpublic/input"
-import { orders } from "@/untils/order"
-import KuaiDi from "./KuaiDi.vue"
-import ProvincesOrders from "./ProvincesOrders.vue"
+import { goods, deleteGoods } from "@/untils/goods"
 export default {
   data() {
     return {
@@ -76,14 +66,12 @@ export default {
       pagesize: 5,
       list: [],
       total: 0,
-      visivle: false,
-      edit: -1,
-      visivleProv: false
+      edit: -1
     }
   },
   methods: {
     getTable(query = "") {
-      orders({
+      goods({
         query: query,
         pagenum: this.pagenum,
         pagesize: this.pagesize
@@ -93,11 +81,7 @@ export default {
         this.total = res.data.data.total
       })
     },
-    // 获取订单列表数据
-    search() {
-      this.getTable(this.value)
-    },
-    // 点击搜素数据
+    // 获取商品列表数据
     handleSizeChange(val) {
       this.pagesize = val
       this.getTable()
@@ -108,39 +92,74 @@ export default {
       this.getTable()
     },
     // 当页码发生变化时候生效,返回当前页码
-    handleDelete(row) {
-      this.visivle = true
-      this.$nextTick(() => {
-        this.$refs.keaidi.info(row.id)
-      })
+    search() {
+      this.getTable(this.value)
     },
-    // 点击添加跳出模态框
-    handleEdit() {
-      this.visivleProv = true
-      this.$nextTick(() => {
-        this.$refs.provincesorders.info()
+    // 点击搜素数据
+    add() {
+      this.edit = -1
+      this.$router.push({ name: "add", params: { edit: this.edit } })
+    },
+    // 添加数据
+    handleEdit(index, row) {
+      console.log(row)
+      this.edit = row.goods_id
+      this.$router.push({ name: "add", params: { row, edit: this.edit } })
+    },
+    // 点击编辑跳转数据回填
+    handleDelete(index, row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       })
+        .then(() => {
+          deleteGoods({ id: row.goods_id }).then((res) => {
+            console.log(res)
+            if (res.data.meta.status == 200) {
+              this.$message({
+                message: res.data.meta.msg,
+                type: "success"
+              })
+            }
+          })
+          this.getTable()
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          })
+        })
     }
+    // 删除商品
   },
   created() {
     this.getTable()
   },
   mounted() {},
-  components: { myInput, KuaiDi, ProvincesOrders },
+  components: {
+    myInput
+  },
+  filters: {
+    times(val) {
+      return new Date(val).toLocaleString()
+    }
+  },
   computed: {},
   watch: {}
 }
 </script>
 
 <style lang="scss" scoped>
-.order {
-  padding: 15px;
-  background: white;
-}
 .header {
   width: 610px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+}
+.goods {
+  padding: 15px;
+  background: white;
 }
 </style>

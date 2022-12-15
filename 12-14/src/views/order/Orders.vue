@@ -85,8 +85,8 @@ export default {
     getTable(query = "") {
       orders({
         query: query,
-        pagenum: this.pagenum,
-        pagesize: this.pagesize
+        pagenum: this.pageCurrent,
+        pagesize: this.pageSize
       }).then((res) => {
         console.log(res)
         this.list = res.data.data.goods
@@ -99,12 +99,12 @@ export default {
     },
     // 点击搜素数据
     handleSizeChange(val) {
-      this.pagesize = val
+      this.pageSize = val
       this.getTable()
     },
     // 当每页数量发生变化时候生效,返回当前每页数量
     handleCurrentChange(val) {
-      this.pagenum = val
+      this.pageCurrent = val
       this.getTable()
     },
     // 当页码发生变化时候生效,返回当前页码
